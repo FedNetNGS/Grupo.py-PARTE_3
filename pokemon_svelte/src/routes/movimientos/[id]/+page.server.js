@@ -1,5 +1,5 @@
 export async function load({ params }) {
-    const id = params.id;
+    const id = params.id; 
     const url = `http://localhost:8000/moves/${id}/`;
     const response = await fetch(url);
 
