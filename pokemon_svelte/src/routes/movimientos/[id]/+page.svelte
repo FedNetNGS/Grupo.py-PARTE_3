@@ -2,7 +2,7 @@
     export let data;
 </script>
 
-<h1 class="titulo">MOVIMIENTOS</h1>
+<h1 class="titulo">INFORMACIÓN DEL MOVIMIENTO</h1>
 
 
 <style>
@@ -55,25 +55,37 @@
     }
 </style>
 
+
 <table>
     <thead>
         <tr>
-             <th>ID</th>
-             <th>NOMBRE</th>
-             <th>INFORMACIÓN</th>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>GENERACIÓN</th>
+            <th>USOS</th>
+            <th>PRECISIÓN</th>
+            <th>POTENCIA</th>
+            <th>EFECTOS</th>
         </tr>
     </thead>
     <tbody>
-        {#each data.moves as moves}
-            <tr>
-                <td>{moves.id}</td>
-                <td>{moves.nombre}</td> 
-                <td>
-                    <a href={`/movimientos/${moves.id}`}>
-                        Ver más información
-                    </a>
-                </td>              
-            </tr>
-        {/each}
+        <tr>
+            <td>{data.move.id}</td>
+            <td>{data.move.nombre}</td>
+            <td>{data.move.generacion}</td>
+            <td>{data.move.usos}</td>
+            <td>{data.move.precision}</td>
+            <td>{data.move.potencia}</td>
+            <td>{data.move.efecto}</td>
+        </tr>
     </tbody>
- </table>
+</table>
+
+
+
+
+
+<div style="text-align: center;
+                 margin-top: 20px;">
+    <a href="/movimientos">Volver a la lista de movimientos</a>
+</div>
