@@ -3,8 +3,12 @@
     import '../../styles/tablas.css';
 </script>
 
-<h1>Bienvenido a la página de Pokémon</h1>
-<p>Acá podes ver a todos tus pokemons favoritos</p>
+<h1 class="titulo">
+    Bienvenido a la página de Pokémon
+</h1>
+<p class="subtitulo">
+    Acá podes ver a todos tus pokemons favoritos
+</p>
 
 <table class="tabla_general">
    <thead>

@@ -6,7 +6,7 @@
 <style>
     .footer {
         text-align: center;
-        font-size: 14px; 
+        font-size: 15px; 
         color: #8d8787; 
         margin-top: 40px; 
         padding: 20px 0; 
