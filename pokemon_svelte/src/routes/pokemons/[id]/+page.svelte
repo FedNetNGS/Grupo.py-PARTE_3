@@ -46,6 +46,8 @@
     </tbody>
 </table>
 
-<a href="/pokemons">Volver</a>
+<a href="/pokemons" class="links_retroceder">
+    Volver
+</a>
 
 
