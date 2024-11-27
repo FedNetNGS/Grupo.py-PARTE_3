@@ -4,7 +4,7 @@
 </script>
 
 <h1 class="titulo">
-    Bienvenido a la página de Pokémon
+    Bienvenido a la lista de Pokémons
 </h1>
 <p class="subtitulo">
     Acá podes ver a todos tus pokemons favoritos
