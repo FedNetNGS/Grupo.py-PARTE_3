@@ -4,35 +4,6 @@
     
     export let data;
 
-    let equipos = writable({
-        nombre_de_equipo: '',
-        integrantes: [],
-    });
-
-    function agregarIntegrante() {
-        equipos.update(s => {
-            s.integrantes.push({
-                nombre: '',
-                id: '',
-                tipo: '',
-            });
-            return s;
-        });
-    }
-
-    function eliminarIntegrante(index) {
-        equipos.update(s => {
-            s.integrantes.splice(index, 1);
-            return s;
-        });
-    }
-
-    function seleccionarIntegrante(index, pokemonSeleccionado) {
-    // Actualiza el integrante en el índice correspondiente en el array
-    $equipos.integrantes[index] = pokemonSeleccionado;
-}
-
-
 </script>
 
 <h1 class="titulo">Esta es la página de los equipos</h1>
