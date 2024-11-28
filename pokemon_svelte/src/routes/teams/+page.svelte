@@ -4,34 +4,122 @@
     
     export let data;
 
+    let equipo = writable({
+        nombre_de_equipo: '',
+        id_equipo: '',
+        integrantes: []
+    });
+
+    function AgregarIntegrante() {
+        equipo.update(s => {
+            s.integrantes.push({nombre : '', tipo: '', id: '',});
+            return s;
+        });
+    }
+
+    function EliminarIntegrante(index) {
+        equipo.update(s => {
+            s.integrantes.splice(index, 1);
+            return s;
+        });
+    }
 </script>
 
 <h1 class="titulo">Esta es la página de los equipos</h1>
 
 <p class="subtitulo">Aquí podrás ver todos los equipos</p>
-<div class="div-tabla">
-    <table class="tabla_general">
-        <thead>
+
+
+
+<table class="tabla_general">
+    <thead>
+        <tr>
+            <th>Nombre del equipo</th>
+            <th>ID del equipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {#each data.equipos as equipo}
             <tr>
-                <th>Nombre del equipo</th>
-                <th>ID del equipo</th>
-                <th>Información detallada</th>
+                <td><a href="/teams/{equipo.id_equipo}">{equipo.nombre_de_equipo}</a></td>
+                <td><a href="/teams/{equipo.id_equipo}">{equipo.id_equipo}</a></td>
             </tr>
-        </thead>
-        <tbody>
-            {#each data.equipos as equipo}
-                <tr>    
-                    <td>{equipo.nombre_de_equipo}</td>
-                    <td>{equipo.id_equipo}</td>
-                    <td>
-                        <a href={`/teams/${equipo.id_equipo}`}>Ver equipo</a>
-                    </td>
-                </tr>
-            {/each}
-        </tbody>
-    </table>
-</div>
+        {/each}
+    </tbody>
+</table>
+
+<h2>Crear un nuevo equipo</h2>
+
+<form method="POST" action="?/create">
+        <label>
+            Nombre del equipo:
+            <input
+                name="nombre"
+                type="text"
+                bind:value={$equipo.nombre_de_equipo}
+                autocomplete="off"
+                required
+            />
+        </label>
 
 
+    <div>
+        <input type="hidden" name="integrantes" value={JSON.stringify($equipo.integrantes)} />
+        <h3>Integrantes del equipo</h3>
+        {#each $equipo.integrantes as integrante, index}
+            <fieldset>
+                <legend>Integrante {index + 1}</legend>
+                <Typehead
+                    label="Seleccionar integrante"
+                    placeholder={"Seleccionar integrante por nombre"}
+                    data={data.integrantes}
+                    extract={(integrante) => `${integrante.nombre}`}
+                    on:select={({ detail }) => integrante = detail.original}
+                    inputAfterSelect='clear'
+                />
+                <div>
+                    <label for="integrante-name-{index}">Nombre</label>
+                    <input
+                        id="integrante-name-{index}"
+                        type="text"
+                        bind:value={integrante.nombre}
+                        required
+                        readonly
+                    />
+                </div>
+                <div>
+                    <label for="integrante-tipo-{index}">Tipo</label>
+                    <input
+                        id="integrante-tipo-{index}"
+                        type="text"
+                        bind:value={integrante.tipo}
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="integrante-id-{index}">ID del pokemon</label>
+                    <input
+                        id="integrante-id-{index}"
+                        type="number"
+                        bind:value={integrante.id}
+                        required
+                        readonly
+                    />
+                </div>
+                <button type="button" on:click={() => EliminarIntegrante(index)}>
+                    Eliminar integrante
+                </button>
+            </fieldset>
+        {/each}
+    </div>
+
+    <button type="button" on:click={AgregarIntegrante}>
+        Agregar integrante
+    </button>
+
+    <button type="submit">
+        Crear equipo
+    </button>
+</form>
 
 
