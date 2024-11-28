@@ -122,4 +122,6 @@
     </button>
 </form>
 
+<h2>Edición de equipos</h2>
 
+<a href="/teams/editar_pokemon">Edición de pokemons</a>
