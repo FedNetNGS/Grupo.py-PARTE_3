@@ -89,7 +89,7 @@
                     />
                 </div>
                 <div>
-                    <label> Imagen; <img src="{integrante.imagen}" alt="" width="100px" height="100px"></label>
+                    <label for="integrante-id-{index}"><img src="{integrante.imagen}" alt="" width="100px" height="100px"></label>
                 </div>
                 <div>
                     <label for="integrante-tipo-{index}">Tipo</label>
