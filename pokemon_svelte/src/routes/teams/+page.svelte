@@ -48,10 +48,10 @@
     </tbody>
 </table>
 
-<h2>Crear un nuevo equipo</h2>
+<h2 class="subtitulo">Crear un nuevo equipo</h2>
 
 <form method="POST" action="?/create">
-        <label>
+        <label class="crear-equipo">
             Nombre del equipo:
             <input
                 name="nombre"
@@ -59,11 +59,12 @@
                 bind:value={$equipo.nombre_de_equipo}
                 autocomplete="off"
                 required
+                placeholder="Escribe el nombre del equipo"
             />
         </label>
 
 
-    <div>
+    <div class="div-integrantes">
         <input type="hidden" name="integrantes" value={JSON.stringify($equipo.integrantes)} />
         <h3>Integrantes del equipo</h3>
         {#each $equipo.integrantes as integrante, index}
@@ -72,7 +73,7 @@
                 <Typehead
                     label="Seleccionar integrante"
                     placeholder={"Seleccionar integrante por nombre"}
-                    data={data.integrantes}
+                    data={data.pokemones}
                     extract={(integrante) => `${integrante.nombre}`}
                     on:select={({ detail }) => integrante = detail.original}
                     inputAfterSelect='clear'
@@ -86,6 +87,9 @@
                         required
                         readonly
                     />
+                </div>
+                <div>
+                    <label> Imagen; <img src="{integrante.imagen}" alt="" width="100px" height="100px"></label>
                 </div>
                 <div>
                     <label for="integrante-tipo-{index}">Tipo</label>
@@ -112,16 +116,73 @@
             </fieldset>
         {/each}
     </div>
+    <div class="div-boton-agregar">
+        <button class="boton_agregar" type="button" on:click={AgregarIntegrante}>
+            Agregar integrante
+        </button>
+    
 
-    <button type="button" on:click={AgregarIntegrante}>
-        Agregar integrante
-    </button>
+        <button class="boton_agregar" type="submit">
+            Crear equipo
+        </button>
+    </div>
 
-    <button type="submit">
-        Crear equipo
-    </button>
 </form>
 
-<h2>Edición de equipos</h2>
+<h2 class="subtitulo">Edición de equipos</h2>
 
 <a href="/teams/editar_pokemon">Edición de pokemons</a>
+
+
+<style>
+    .crear-equipo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: "mochiy pop one", sans-serif;
+    }
+
+    .div-integrantes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: "mochiy pop one", sans-serif;
+        margin-top: 20px;
+    }
+
+    .div-boton-agregar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .boton_agregar {
+        display: flex;
+        background-color: #caebfd;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        font-family: "mochiy pop one", sans-serif;
+        font-size: 20px;
+        color: black;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .boton_agregar:hover {
+        background-color: #afb645;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    a {
+        display: flex;
+        font-size: 20px;
+        padding: 10px;
+        text-decoration: none;
+        font-family: "mochiy pop one", sans-serif;
+        align-items: center;
+        justify-content: center;
+    }
+</style>

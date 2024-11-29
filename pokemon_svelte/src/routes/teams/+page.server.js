@@ -9,25 +9,20 @@ export async function load() {
         };
     }
 
-
-    
-    const urlintegrantes = 'http://localhost:8000/equipos/integrantes_disponibles';
-    const responseintegrantes = await fetch(urlintegrantes);
-
-    if (!responseintegrantes.ok) {
-        return {
-            status: responseintegrantes.status,
-            error: new Error(`Error al obtener los integrantes disponibles: ${responseintegrantes.statusText}`)
-        };
-    }
-
-    let integrantes = await responseintegrantes.json();
     let equipos = await responseTeams.json();
-
+    
+    let urlintegrantes = new URL('http://localhost:8000/pokemon/')
+    const response = await fetch(urlintegrantes);
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+    }
+ 
+    let pokemones = await response.json();
+ 
 
     return {
         equipos: equipos,
-        integrantes: integrantes,
+        pokemones: pokemones
 
     };
 }

@@ -24,7 +24,9 @@
                     <td>{pokemon.nombre}</td>
                     <td>{pokemon.tipo}</td>
                     <td>{pokemon.id}</td>
-                    <td>{pokemon.nature.identifier}</td>
+                    <td>
+                        <a href = "/teams/naturaleza/{pokemon.nature.id}">{pokemon.nature.nombre}</a>
+                    </td>
                     <td>
                         <li>
                         {#each pokemon.movimientos as movimiento}
