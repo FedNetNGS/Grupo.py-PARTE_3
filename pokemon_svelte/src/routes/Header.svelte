@@ -10,6 +10,9 @@
       <a href="/movimientos">Movimientos</a>
    </button>
    <button>
+      <a href="/naturalezas">Naturalezas</a>
+   </button> 
+   <button>
        <a href="/teams">Equipos</a>
    </button>
 </nav>
