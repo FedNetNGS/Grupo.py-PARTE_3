@@ -10,6 +10,7 @@
             <tr>
                 <th>ID</th>
                 <th>NOMBRE</th>
+                <th>TIPO</th>
                 <th>GENERACIÓN</th>
                 <th>USOS</th>
                 <th>PRECISIÓN</th>
@@ -21,6 +22,7 @@
             <tr>
                 <td>{data.move.id}</td>
                 <td>{data.move.nombre}</td>
+                <td>{data.move.tipo}</td>
                 <td>{data.move.generacion}</td>
                 <td>{data.move.usos}</td>
                 <td>{data.move.precision}</td>
