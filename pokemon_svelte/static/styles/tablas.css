@@ -7,6 +7,8 @@
     padding: 10px;
     width: 100%;
     max-width: max-content;
+    margin: auto;
+    overflow-y: auto;
     
   }
 
@@ -14,8 +16,11 @@
 .tabla_general {
     border-collapse: collapse;
     overflow: hidden;
+    width: 93%;
     border-radius: 10px;
     table-layout: auto;
+    margin: auto;
+    overflow-y: auto;
   
 }
 .tabla_general thead {
@@ -42,6 +47,25 @@
   border-bottom: none;
 }
     
+.botones {
+    display: flex;
+    background-color: #caebfd;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: "mochiy pop one", sans-serif;
+    font-size: 20px;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botones:hover {
+    background-color: #afb645;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 .pokemon_solo {
     border: 2px solid #ccc;

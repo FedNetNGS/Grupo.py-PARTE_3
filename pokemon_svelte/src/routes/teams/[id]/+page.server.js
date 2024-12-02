@@ -25,13 +25,23 @@ export async function load({ params }) {
     if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
     }
- 
+
     let pokemones = await responsepokemons.json();
+
+    let pok_id = params.id;
+    let urlmoves = new URL(`http://localhost:8000/pokemon/${pok_id}/moves_aprendibles/`)
+    const responsemoves = await fetch(urlmoves);
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+    }
+
+    let movimientos = await responsemoves.json();
  
     return {
         equipo,
         integrantes,
-        pokemones: pokemones
+        pokemones: pokemones,
+        movimientos: movimientos
     };
 }
 
@@ -66,5 +76,39 @@ export const actions = {
         if (!response.ok) {
             error(response.status, 'Algo falló');
        }
-    }
+    },
+    Actualizar: async ({ request }) => {
+        const data = await request.formData();
+
+        const id_pokemon = data.get('id');
+
+        let url = new URL(`http://localhost:8000/equipos/${data.get('id_pokemon')}/asignar_nature/`);
+        let params = {
+            nature_id: data.get('id_naturaleza'),
+         };
+        url.search = new URLSearchParams(params).toString();
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+            error(response.status, 'Algo falló');
+       }
+
+        let url_moves_aprendibles = new URL(`http://localhost:8000/equipos/${data.get('id_pokemon')}/asignar_move`);
+        let params_moves = {
+            move_id: data.get('id_movimiento'),
+         };
+        url_moves_aprendibles.search = new URLSearchParams(params_moves).toString();
+
+        const response_moves = await fetch(url_moves_aprendibles, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+            error(response.status, 'Algo falló');
+       }
+    },
+    
 }

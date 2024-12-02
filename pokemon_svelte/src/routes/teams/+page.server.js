@@ -47,7 +47,22 @@ export const actions = {
         });
 
         if (!response.ok) {
-            throw new Error(`Error al crear el equipo: ${response.status}`);
+            throw new Error(`Error al crear el equipo, excediste la cantidadd e integrantes: ${response.status}`);
         }
+    },
+    Borrar: async ({ request }) => {
+        const data = await request.formData();
+
+        let url = new URL(`http://localhost:8000/equipos/${data.get('id_equipo')}/eliminar`);
+        let params = { id_equipo: data.get('id_equipo') };
+        url.search = new URLSearchParams(params).toString();
+
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+            error(response.status, 'Algo falló');
+       }
     },
 }

@@ -30,12 +30,12 @@
 <p class="subtitulo">Aquí podrás ver todos los equipos</p>
 
 
-
 <table class="tabla_general">
     <thead>
         <tr>
             <th>Nombre del equipo</th>
             <th>ID del equipo</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -43,10 +43,23 @@
             <tr>
                 <td><a href="/teams/{equipo.id_equipo}">{equipo.nombre_de_equipo}</a></td>
                 <td><a href="/teams/{equipo.id_equipo}">{equipo.id_equipo}</a></td>
+                <td>
+                    <form method="POST" action="?/Borrar">
+                        <input type="hidden" name="id_equipo" value={equipo.id_equipo} />
+                        <button class="boton_agregar">Borrar equipo</button>
+                    </form>
+                </td>
             </tr>
         {/each}
     </tbody>
 </table>
+
+<div class="mensaje_triste">
+    {#if !data.equipos.length}
+        <p>No hay nada por acá, create un grupete!</p>
+        <img src="https://image.emojipng.com/157/9436157.png" alt="😢" width="100px" height="100px">
+    {/if}
+</div>
 
 <h2 class="subtitulo">Crear un nuevo equipo</h2>
 
@@ -66,7 +79,8 @@
 
     <div class="div-integrantes">
         <input type="hidden" name="integrantes" value={JSON.stringify($equipo.integrantes)} />
-        <h3>Integrantes del equipo</h3>
+        <h3 class="subtitulo">Integrantes del equipo</h3>
+        
         {#each $equipo.integrantes as integrante, index}
             <fieldset>
                 <legend>Integrante {index + 1}</legend>
@@ -129,17 +143,26 @@
 
 </form>
 
-<h2 class="subtitulo">Edición de equipos</h2>
-
-<a href="/teams/editar_pokemon">Edición de pokemons</a>
 
 
 <style>
+
+    .mensaje_triste {
+        font-size: 20px;
+        text-align: center;
+        color: #000000;
+        font-family: 'mochiy pop one', sans-serif;
+        text-transform: uppercase;
+        padding: 15px;
+        font-weight: 80;
+        border-radius: 20px;
+    }
     .crear-equipo {
         display: flex;
         flex-direction: column;
         align-items: center;
         font-family: "mochiy pop one", sans-serif;
+        margin-top: 30px;
 
     }
 
@@ -154,7 +177,6 @@
         flex-direction: column;
         align-items: center;
         font-family: "mochiy pop one", sans-serif;
-        margin-top: 20px;
     }
 
     .div-boton-agregar {
@@ -193,4 +215,5 @@
         align-items: center;
         justify-content: center;
     }
+
 </style>

@@ -21,18 +21,41 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>información</th>
+                <th>Nombre</th>
+                <th>Movimientos</th>
+                <th>Tipo</th>
+                <th>Naturaleza</th>
+                <th>Foto</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {#each data.integrantes as integrante (integrante.id)}
                 <tr>
                     <td>{integrante.id}</td>
+                    <td>{integrante.nombre}</td>
+                    <td>
+                        {#each integrante.movimientos as movimiento}
+                            <ul>
+                                <li>
+                                    "{movimiento.nombre}" / id: {movimiento.id}
+                                </li>
+                            </ul>
+                        {/each}
+                    </td>
+                    <td>{integrante.tipo}</td>
+                    <td>
+                        {#if integrante.nature}
+                            {integrante.nature.identifier}
+                        {:else}
+                            Sin Naturaleza
+                        {/if}
+                    </td>
+                    <td><img src="{data.pokemones[integrante.id - 1].imagen}" alt="" width="80px" height="80px"></td>
                     <td>
                         <form method="POST" action="?/desinscribir">
                             <input type="hidden" name="id" value={integrante.id} />
                             <input type="hidden" name="id_equipo" value={data.equipo.id_equipo} />
-                            <span>{integrante.nombre} / {integrante.tipo} / <img src="{data.pokemones[integrante.id].imagen}" alt="" width="50px" height="50px"></span>
                             <button>Desinscribir</button>
                         </form>
                     </td>
@@ -42,7 +65,7 @@
     </table>
 </div>
 
-<h1>Equipo: {data.equipo.nombre_de_equipo}</h1>
+<h1 class="subtitulo">Equipo: {data.equipo.nombre_de_equipo}</h1>
 <fieldset>
     <legend>Integrante</legend>
     <Typeahead
@@ -50,21 +73,43 @@
         placeholder={"Seleccionar pokemon por nombre"}
         data={data.integrantes}
         extract={(pokemon) => `${pokemon.nombre}`}
-        on:select={({ detail }) => integrante = detail.original}
+        on:select={({ detail }) => (estado.integrante = detail.original)}
         inputAfterSelect='clear'
     />
-    <div>
 </fieldset>
 
 
+
 {#if estado.integrante}
-    <form method="POST" action="?/inscribir">
+    <form method="POST" action="?/Actualizar">
+
         <input type="hidden" name="id_pokemon" value={estado.integrante.id} />
         <input type="hidden" name="id_equipo" value={data.equipo.id_equipo} />
-        <span>{integrantePre.nombre}</span>
-        <button>Inscribir</button>
+
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" value={estado.integrante.nombre} />
+        </div>
+
+        <div>
+            <label for="id">ID del pokemon:</label>
+            <input type="number" name="id" value={estado.integrante.id} />
+        </div>
+
+        <div>
+            <label for="naturaleza">ID de la naturaleza (1-25):</label>
+            <input type="number" name="id_naturaleza" value={estado.integrante.naturaleza || ''} />
+        </div>
+        <div>
+            <label for="movimientos">Movimientos:</label>
+            <input type="number" name="id_movimiento" value={estado.integrante.movimientos || ''} />
+        </div>
+
+        <button type="submit">Actualizar</button>
     </form>
 {/if}
+
+
 
 <style>
     form {
@@ -72,11 +117,71 @@
         align-items: center;
     }
 
-    form span {
+
+
+    button {
         display: flex;
-        align-items: center;
-        font-size: 20px;
+        background-color: #caebfd;
+        border: none;
+        border-radius: 10px;
         padding: 10px;
-        text-decoration: none;
+        cursor: pointer;
+        font-family: "mochiy pop one", sans-serif;
+        font-size: 20px;
+        color: black;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        margin: 20px;
     }
+
+    button:hover {
+        background-color: #afb645;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+
+    fieldset {
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        border-style: solid none none none;
+        border-width: 10px;
+        border-color: #8ac1fc;
+    }
+
+    legend {
+        font-family: "mochiy pop one", sans-serif;
+        font-size: 20px;
+        color: black;
+        text-align: center;
+        padding: 10px;
+    }
+
+    input {
+        font-family: "mochiy pop one", sans-serif;
+        padding: 5px;
+        margin: 20px;
+    }
+
+    label {
+        font-family: "mochiy pop one", sans-serif;
+        padding: 5px;
+        margin: 20px;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        padding-left: 30px;
+        background-image: url(https://cdn-icons-png.flaticon.com/512/16037/16037595.png) ;
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: left center;
+
+    }
+
 </style>
