@@ -140,6 +140,13 @@
         flex-direction: column;
         align-items: center;
         font-family: "mochiy pop one", sans-serif;
+
+    }
+
+    input {
+        font-family: "mochiy pop one", sans-serif;
+        padding: 5px;
+        margin: 20px;
     }
 
     .div-integrantes {
@@ -169,6 +176,7 @@
         align-items: center;
         justify-content: center;
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        margin: 20px;
     }
 
     .boton_agregar:hover {

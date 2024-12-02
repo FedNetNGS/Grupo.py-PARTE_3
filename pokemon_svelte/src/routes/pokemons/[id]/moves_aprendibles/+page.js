@@ -9,7 +9,18 @@ export async function load({ params }) {
 
     const move_aprendible = await move_aprendible_response.json();
 
+    const id_move = params.id; 
+    const url = `http://localhost:8000/moves/${id_move}/`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Error al cargar el movimiento: ${response.status}`);
+    }
+
+    const move = await response.json();
+
     return {
-        move_aprendible
+        move_aprendible,
+        move
     };
 }

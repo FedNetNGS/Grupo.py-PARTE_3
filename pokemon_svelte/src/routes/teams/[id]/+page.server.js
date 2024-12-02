@@ -19,9 +19,19 @@ export async function load({ params }) {
     const integrantes = await response2.json();
     const equipo = await response.json();
 
+
+    let urlpokemons = new URL('http://localhost:8000/pokemon/')
+    const responsepokemons = await fetch(urlpokemons);
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+    }
+ 
+    let pokemones = await responsepokemons.json();
+ 
     return {
         equipo,
         integrantes,
+        pokemones: pokemones
     };
 }
 
