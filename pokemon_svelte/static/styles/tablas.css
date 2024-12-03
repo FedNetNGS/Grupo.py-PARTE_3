@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+
+.div-tabla {
+    border-radius: 10px;
+    overflow-x: auto;
+    padding: 10px;
+    width: 100%;
+    max-width: max-content;
+    margin: auto;
+    overflow-y: auto;
+    
+  }
+
+
+.tabla_general {
+    border-collapse: collapse;
+    overflow: hidden;
+    width: 93%;
+    border-radius: 10px;
+    table-layout: auto;
+    margin: auto;
+    overflow-y: auto;
+  
+}
+.tabla_general thead {
+    background-color: #4caf50;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    font-family: "mochiy pop one", sans-serif;
+  }
+
+
+.tabla_general th {
+    padding: 12px;;
+    word-wrap: break-word;
+}
+.tabla_general td {
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  font-family: "mochiy pop one", sans-serif;
+  text-transform: capitalize;
+  padding: 15px;
+}
+.tabla_general tbody tr:last-child td {
+  border-bottom: none;
+}
+    
+.botones {
+    display: flex;
+    background-color: #caebfd;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: "mochiy pop one", sans-serif;
+    font-size: 20px;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botones:hover {
+    background-color: #afb645;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokemon_solo {
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 120px;
+    max-width: 1000px;
+    text-align: center;
+    background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    margin: 50px auto;
+}
+
+.titulo {
+    font-family: "pokemon solid", sans-serif;
+    font-size: 60px; 
+    color: #ffcb05; 
+    text-align: center;
+    letter-spacing: 16px;
+    text-transform: uppercase; 
+    padding: 6px;
+    font-weight: 800;
+    -webkit-text-stroke: 4px #0011ff;
+    background-color: #8ac1fc;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.subtitulo {
+    font-size: 20px;
+    text-align: center;
+    color: #ffcb05;
+    font-family: 'pokemon solid', sans-serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight: 800;
+    -webkit-text-stroke: 1px #0011ff;
+    background-color: #8ac1fc;
+    border-radius: 20px;
+}
+
+.links_retroceder {
+    text-align: center;
+    font-family: 'Mochiy Pop One', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #8ac1fc;
+}
+
+.html, body {
+    background-color: #caebfd;
+    size: auto;
+
+}
