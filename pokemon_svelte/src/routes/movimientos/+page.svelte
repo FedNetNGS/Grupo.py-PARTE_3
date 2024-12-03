@@ -50,3 +50,32 @@
         {/each}
     </tbody>
  </table>
+
+ <style>
+    .buscador {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        display: flex;
+        background-color: #caebfd;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        cursor: pointer;
+        font-family: "mochiy pop one", sans-serif;
+        font-size: 20px;
+        color: black;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        margin: 20px;
+    }
+
+    button:hover {
+        background-color: #afb645;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+ </style>

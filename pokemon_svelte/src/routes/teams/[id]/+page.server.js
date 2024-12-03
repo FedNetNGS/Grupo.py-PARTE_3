@@ -110,5 +110,22 @@ export const actions = {
             error(response.status, 'Algo falló');
        }
     },
+    eliminarMoves: async ({ request }) => {
+        const data = await request.formData();
+
+        let url_moves = new URL(`http://localhost:8000/equipos/${data.get('id')}/eliminar_moves/`);
+        let params_integrante = {
+            id_del_integrante: data.get('id'),
+         };
+        url_moves.search = new URLSearchParams(params_integrante).toString();
+
+        const response = await fetch(url_moves, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!response.ok) {
+            error(response.status, 'Algo falló');
+       }
+    },
     
 }

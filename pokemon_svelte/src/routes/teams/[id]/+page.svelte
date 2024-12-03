@@ -23,6 +23,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Movimientos</th>
+                <th></th>
                 <th>Tipo</th>
                 <th>Naturaleza</th>
                 <th>Foto</th>
@@ -43,10 +44,18 @@
                             </ul>
                         {/each}
                     </td>
+                    <td>
+                        <form method="POST" action="?/eliminarMoves">
+                            <input type="hidden" name="id" value={integrante.id} />
+                            <input type="hidden" name="id_equipo" value={data.equipo.id_equipo} />
+                            <button>Eliminar movimientos</button>
+                        </form>
+                    </td>
                     <td>{integrante.tipo}</td>
+                    
                     <td>
                         {#if integrante.nature}
-                            {integrante.nature.identifier}
+                            {integrante.nature.identifier} / {integrante.nature.id}
                         {:else}
                             Sin Naturaleza
                         {/if}
@@ -98,7 +107,7 @@
 
         <div>
             <label for="naturaleza">ID de la naturaleza (1-25):</label>
-            <input type="number" name="id_naturaleza" value={estado.integrante.naturaleza || ''} />
+            <input type="number" name="id_naturaleza" value={estado.integrante.naturaleza} />
         </div>
         <div>
             <label for="movimientos">Movimientos:</label>
