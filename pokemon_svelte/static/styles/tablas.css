@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
-@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 
 .div-tabla {
     border-radius: 10px;
@@ -80,15 +81,14 @@
 }
 
 .titulo {
-    font-family: "pokemon solid", sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 60px; 
-    color: #ffcb05; 
+    color: black; 
     text-align: center;
     letter-spacing: 16px;
     text-transform: uppercase; 
     padding: 6px;
     font-weight: 800;
-    -webkit-text-stroke: 4px #0011ff;
     background-color: #8ac1fc;
     border-radius: 20px;
     margin: auto;
@@ -118,8 +118,11 @@
     background-color: #8ac1fc;
 }
 
-.html, body {
-    background-color: #caebfd;
-    size: auto;
-
+html, body {
+    background-color: #2c2c2c;
+    width: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    
 }
